@@ -10,7 +10,7 @@ Lead.SetLeadRoute = {
     }
 };
 
-Lead.GetLeadByCampign = {
+Lead.GetLeadByCampignRoute = {
 	method: 'GET',
     path: '/Lead/{CampignId}/{LeadId?}',
     handler: function (request, reply) {
@@ -28,18 +28,14 @@ Lead.GetLeadByCampign = {
     }
 };
 
-Lead.GetLeadByFields = {
+Lead.GetLeadByFieldsRoute = {
 	method: 'GET',
 	path: '/Lead/{CampignId}/{Field}/{Value}',
 	handler: function (request, reply) {
-		if (request.params && request.params.Field.length == request.params.Value.length) {
-			console.log('yay');
+		var FieldArr = request.params.Field.split(','),
+			ValueArr = request.params.Value.split(',');
 
-		}
-		var d = JSON.stringify(request.params.Field);
-			console.log(d.length);
-			console.log(d);
-		return reply({data: request.params, len: request.params.Field.length});
+		return reply({data: request.params, Values: ValueArr, Fields: FieldArr});
 	}
 };
 
