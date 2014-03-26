@@ -1,15 +1,25 @@
 'use strict';
 var Campign = {},
-	_ = require('lodash');
+	_ = require('lodash'),
+	Hapi = require('hapi');
 
 Campign.Route = {};
 
 Campign.Route.createCampign = {
 	method: 'POST',
 	path: '/Campign/Create',
-	handler: function (request, reply) {
-
-		return reply({response: 'OK', result: request.payload});
+	config: {
+		handler: function (request, reply) {
+			console.log(request.payload.campign);
+			return reply({response: 'OK', result: request.payload});
+		},
+		validate: {
+    	    payload: {
+    	        campign: Hapi.types.Object({
+    				name: Hapi.types.String().min(1).max(10).required()
+				})
+    	    }
+    	}
 	}
 };
 

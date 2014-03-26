@@ -13,7 +13,8 @@ server.route(
 		routes.Traffic.Route.GetTrafficByMultipleField,
 		routes.Lead.Route.SetLead,
 		routes.Lead.Route.GetLeadById,
-		routes.Lead.Route.GetLeadByFields
+		routes.Lead.Route.GetLeadByFields,
+		routes.Campign.Route.createCampign
 	]
 );
 
