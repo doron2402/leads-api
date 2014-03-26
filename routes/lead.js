@@ -2,7 +2,9 @@
 var Lead = {},
 	_ = require('lodash');
 
-Lead.SetLeadRoute = {
+Lead.Route = {};
+
+Lead.Route.SetLead = {
 	method: 'POST',
     path: '/Lead/Set',
     handler: function (request, reply) {
@@ -10,9 +12,9 @@ Lead.SetLeadRoute = {
     }
 };
 
-Lead.GetLeadByCampignRoute = {
+Lead.Route.GetLeadById = {
 	method: 'GET',
-    path: '/Lead/{CampignId}/{LeadId?}',
+    path: '/Lead/{CampignId}/{LeadId}',
     handler: function (request, reply) {
 		if (request.params && request.params.LeadId) {
 			//return a single lead object
@@ -28,14 +30,22 @@ Lead.GetLeadByCampignRoute = {
     }
 };
 
-Lead.GetLeadByFieldsRoute = {
+Lead.Route.GetLeadByFields = {
 	method: 'GET',
-	path: '/Lead/{CampignId}/{Field}/{Value}',
+	path: '/Lead/{CampignId}/Fields/{Field*}',
 	handler: function (request, reply) {
-		var FieldArr = request.params.Field.split(','),
-			ValueArr = request.params.Value.split(',');
+		var campign_id = parseInt(request.params.CampignId,10),
+			field_array = request.params.Field.split('/'),
+			key_arr = [],
+			val_arr = [];
 
-		return reply({data: request.params, Values: ValueArr, Fields: FieldArr});
+		for (var i = 0; i < field_array.length; i++) {
+			if (i % 2 == 0)
+				key_arr.push(field_array[i]);
+			else
+				val_arr.push(field_array[i]);
+		};
+		return reply({campign_id: campign_id, key: key_arr, val: val_arr});
 	}
 };
 

@@ -1,4 +1,5 @@
 var Auth = {};
+Auth.Route = {};
 
 Auth.Route.login = {};
 

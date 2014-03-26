@@ -4,6 +4,15 @@ var Campign = {},
 
 Campign.Route = {};
 
+Campign.Route.createCampign = {
+	method: 'POST',
+	path: '/Campign/Create',
+	handler: function (request, reply) {
+
+		return reply({response: 'OK', result: request.payload});
+	}
+};
+
 Campign.Route.getCampignPerformance = {
 	method: 'GET',
     path: '/Campign/Performance',
@@ -26,14 +35,6 @@ Campign.Route.getCampignPerformanceByField = {
     handler: function (request, reply) {
         return reply(request.payload);
     }
-};
-
-Campign.Route.createCampign = {
-	method: 'POST',
-	path: '/Campign/Create',
-	handler: function (request, reply) {
-		return reply({response: 'OK'});
-	}
 };
 
 Campign.Route.deleteCampign = {

@@ -1,5 +1,5 @@
 var Users = {};
-
+Users.Route = {};
 Users.Route.createUser = {
     method: 'POST',
     path: '/User/Create',
@@ -30,7 +30,7 @@ Users.Route.GetUserData = {
 Users.Route.GetAllUsers = {
     method: 'GET',
     path: '/Users/All',
-    handler: fucntion (request, reply) {
+    handler: function (request, reply) {
         reply({data: 'all'});
     }
 };
